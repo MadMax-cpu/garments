@@ -50,7 +50,7 @@ app.get('/ping', (req, res) => {
       if (err) {
         return res.status(500).send('Database connection failed');
       }
-      res.send('PONG');
+      res.send('Garments Iot Project');
     });
   });
 
