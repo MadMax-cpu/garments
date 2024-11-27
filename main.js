@@ -32,14 +32,14 @@ const pool = mysql.createPool({
 });
 
 // Test connection pool
-pool.getConnection((err, connection) => {
+pool.connect(err => {
     if (err) {
-        console.error('Error connecting to the database:', err);
-    } else {
-        console.log('Connected to the database.');
-        connection.release();
+      console.error('Error connecting to MySQL:', err.message);
+      console.error('Error stack:', err.stack);
+      return;
     }
-});
+    console.log('Connected to MySQL as id ' + connection.threadId);
+  });
 
 
 // Create a /ping endpoint to check server and database status
