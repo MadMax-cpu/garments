@@ -32,14 +32,15 @@ const pool = mysql.createPool({
 });
 
 // Test connection pool
-pool.connect(err => {
+pool.getConnection((err, connection) => {
     if (err) {
-      console.error('Error connecting to MySQL:', err.message);
-      console.error('Error stack:', err.stack);
-      return;
-    }
-    console.log('Connected to MySQL as id ' + connection.threadId);
-  });
+        console.error('Error connecting to MySQL:', err.message);
+        console.error('Error stack:', err.stack);
+        return;
+      }
+      console.log('Connected to MySQL as id ' + connection.threadId);
+    
+});
 
 
 // Create a /ping endpoint to check server and database status
