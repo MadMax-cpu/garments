@@ -27,9 +27,7 @@ const pool = mysql.createPool({
     database: '1234', // Aiven MySQL database name
     port: 28256, // Aiven MySQL port
     ssl: {
-        ca: fs.readFileSync('/path/to/ca.pem'), // SSL CA certificate
-        cert: fs.readFileSync('/path/to/client-cert.pem'), // SSL client certificate
-        key: fs.readFileSync('/path/to/client-key.pem') // SSL client key
+        ca: fs.readFileSync('./ca.pem'), 
     }
 });
 
