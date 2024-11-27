@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const cors = require('cors');
+const fs = require('fs');
 
 const app = express();
 //const port = 3000;
@@ -9,11 +11,26 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'root',
+//     database: 'garments_timer',
+// });
+
+
+// Create a connection pool
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'garments_timer',
+    host: 'mysql-388fc0e0-sajiborton6437-af4a.e.aivencloud.com', // Aiven MySQL host
+    user: 'avnadmin', // Aiven MySQL user
+    password: process.env.AIVEN_PASSWORD, // Aiven MySQL password
+    database: '1234', // Aiven MySQL database name
+    port: 28256, // Aiven MySQL port
+    ssl: {
+        ca: fs.readFileSync('/path/to/ca.pem'), // SSL CA certificate
+        cert: fs.readFileSync('/path/to/client-cert.pem'), // SSL client certificate
+        key: fs.readFileSync('/path/to/client-key.pem') // SSL client key
+    }
 });
 
 // Test connection pool
