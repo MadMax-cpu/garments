@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 //     password: 'root',
 //     database: 'garments_timer',
 // });
-
+console.log(process.env.AIVEN_PASSWORD);
 
 // Create a connection pool
 const pool = mysql.createPool({
